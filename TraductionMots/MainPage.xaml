@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TraductionMots.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="10,0"
+            VerticalOptions="Fill">
+
+            <Image
+                Source="logo.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="100"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="TranslateMe"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Traduisez les mots issues d'articles de site d'information Francais"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Bienvenue sur l'application TradMe"
+                FontSize="16"
+                HorizontalOptions="Center" />
+            <Label
+                Text="Attention ,la traduction n'est pas liée à un contexte mais est une traduction littéralle. La réponse peut ne pas correspondre à votre attente"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Attention ,la traduction n'est pas liée à un contexte mais est une traduction littéralle. La réponse peut ne pas
+                correspondre à votre attente"
+                FontSize="12"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="BeginButton"
+                Text="Débuter"
+                SemanticProperties.Hint="Débuter le jeu"
+                Command="{Binding BeginGameCommand}"
+                HorizontalOptions="Center" />
+            <Label
+                x:Name="MotLabel"
+                Text="{Binding WordFr}"
+                IsVisible="{Binding IsVisibleElement}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Mot à deviner"
+                FontSize="18"
+                HorizontalOptions="Center" />
+            <Entry x:Name="MotEntry" Text="{Binding AnswerWord}" Placeholder="Mots" IsVisible="{Binding IsVisibleElement}"  FontSize="18"  />
+           
+            <Button
+                x:Name="ValidAnswer"
+                Text="Valider"
+                IsVisible="{Binding IsVisibleValider}"
+                SemanticProperties.Hint="Valider réponse"
+                Command="{Binding ValidAnswerCommand}"
+                HorizontalOptions="Center" />
+            <Button
+                x:Name="NextQuestionButton"
+                Text="Suivant"
+                IsVisible="{Binding IsVisibleSuivant}"
+                SemanticProperties.Hint="Mot suivant"
+                Command="{Binding NextQuestionCommand}"
+                HorizontalOptions="Center" />
+            <Label
+                x:Name="ReponseLabel"
+                Text="{Binding OkOrNotOk}"
+                IsVisible="{Binding IsVisibleElement}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Réponse"
+                FontSize="18"
+                TextColor="{Binding AnswerColor}"
+                HorizontalOptions="Center" />
+           
+          
+
+            <Label
+                x:Name="ScoreLabel"
+                Text="{Binding InfoScore}"
+                IsVisible="{Binding IsVisibleElement}"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Score"
+                FontSize="18"
+                
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+        
+    </ScrollView>
+
+</ContentPage>
