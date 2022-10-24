@@ -14,6 +14,7 @@ public class TraductionViewModel : INotifyPropertyChanged
     private bool _isVisibleElement;
     private bool _isVisibleSuivant;
     private bool _isVisibleValider;
+    private bool _isVisibleDebuter = true;
     private string _wordFr;
     private string _answerWord;
     private DeepL.Model.TextResult _traductionDeepl;
@@ -39,12 +40,15 @@ public class TraductionViewModel : INotifyPropertyChanged
     public int ScoreInt { get => scoreInt; set { scoreInt = value; OnPropertyChanged(); } }
     public string InfoScore { get => infoScore; set { infoScore = value; OnPropertyChanged(); } }
 
+    [DefaultValue(true)]
+    public bool IsVisibleDebuter { get => _isVisibleDebuter; set { _isVisibleDebuter = value; OnPropertyChanged(); }  }
     #endregion
 
     #region Command
     public Command BeginGameCommand { get; set; }
     public Command NextQuestionCommand { get; set; }
     public Command ValidAnswerCommand { get; set; }
+ 
     #endregion
 
 
@@ -75,8 +79,8 @@ public class TraductionViewModel : INotifyPropertyChanged
         GameTrad = GetWordOnWebsite.GetListWord();
         
         ReturnWordFr(0, GameTrad);
-        ValiderOuSuivant("valider");
-
+        VisibleValiderOuSuivant("valider");
+        ChangeVisibleBtnDebuter(false);
 
     }
 
@@ -101,8 +105,9 @@ public class TraductionViewModel : INotifyPropertyChanged
 
 
         }
+        
+        VisibleValiderOuSuivant("suivant");
         FillScoreLabel();
-        ValiderOuSuivant("suivant");
     }
     /// <summary>
     /// fait les opérations pour afficher le mot suivant
@@ -112,7 +117,7 @@ public class TraductionViewModel : INotifyPropertyChanged
 
         ReturnWordFr(IncrementIndex(), GameTrad);
         CleanAnswer();
-        ValiderOuSuivant("valider");
+        VisibleValiderOuSuivant("valider");
     }
     #endregion
 
@@ -125,6 +130,8 @@ public class TraductionViewModel : INotifyPropertyChanged
         if (GameTrad.WordsCount == _indexQuestion + 1)
         {
             EndGame();
+            ChangeVisibleBtnDebuter(true);
+            VisibleFinDuJeu();
         }
         else
         {
@@ -138,7 +145,7 @@ public class TraductionViewModel : INotifyPropertyChanged
     private void EndGame()
     {
         InfoScore = "Score final: " + ScoreInt.ToString() + "/" + GameTrad.WordsCount.ToString();
-        
+      
     }
     /// <summary>
     /// message du score pour le jeu pas encore terminé (en cours)
@@ -198,7 +205,7 @@ public class TraductionViewModel : INotifyPropertyChanged
     /// gestion de la visibilité du bouton Suivant et Valider ( jamais les deux visibles en mémes temps) s
     /// </summary>
     /// <param name="validerOrSuivant"></param>
-    private void ValiderOuSuivant(string validerOrSuivant)
+    private void VisibleValiderOuSuivant(string validerOrSuivant)
     {
         if (validerOrSuivant == "valider")
         {
@@ -212,7 +219,22 @@ public class TraductionViewModel : INotifyPropertyChanged
         }
         
     }
+    /// <summary>
+    /// Quand derniére questionn , les boutons valider et Suivant sont masqué
+    /// </summary>
+    private void VisibleFinDuJeu()
+    {
+     
+            IsVisibleValider = false;
+            IsVisibleSuivant = false;
+      
 
+    }
+    private void ChangeVisibleBtnDebuter(bool visible)
+    {
+
+        IsVisibleDebuter = visible;
+    }
     /// <summary>
     /// Incremente l'index de la question de +1
     /// </summary>

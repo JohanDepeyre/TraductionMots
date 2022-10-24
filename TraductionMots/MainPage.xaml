@@ -9,37 +9,73 @@
             Padding="10,0"
             VerticalOptions="Fill">
 
-            <Image
+            <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+                <BoxView 
+                 Color="White" />
+                <Image
                 Source="logo.png"
                 SemanticProperties.Description="Cute dot net bot waving hi to you!"
                 HeightRequest="100"
-                HorizontalOptions="Center" />
-
-            <Label
+                HorizontalOptions="Center"
+                    VerticalOptions="Center" 
+                     Grid.Column="0" />
+    
+            <BoxView Grid.Column="1"
+                 Color="White" />
+                <Label
                 Text="TranslateMe"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
+                HorizontalOptions="Center"
+                    
+                     VerticalOptions="Center" 
+                     Grid.Column="1" />
+                <BoxView Grid.Row="1"
+                 Grid.ColumnSpan="2"
+                 Color="White" HeightRequest="100"/>
+                <Label
                 Text="Traduisez les mots issues d'articles de site d'information Francais"
-                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.HeadingLevel="Level1" Grid.Row="1" Grid.ColumnSpan="2"
                 SemanticProperties.Description="Bienvenue sur l'application TradMe"
                 FontSize="16"
+                  VerticalOptions="Center"
+                    HorizontalTextAlignment="Center"
                 HorizontalOptions="Center" />
-            <Label
+              
+                <BoxView Grid.Row="2"
+                 Grid.ColumnSpan="2"
+                 Color="White" HeightRequest="100"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
                 Text="Attention ,la traduction n'est pas liée à un contexte mais est une traduction littéralle. La réponse peut ne pas correspondre à votre attente"
-                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.HeadingLevel="Level2" 
                 SemanticProperties.Description="Attention ,la traduction n'est pas liée à un contexte mais est une traduction littéralle. La réponse peut ne pas
                 correspondre à votre attente"
                 FontSize="12"
-                HorizontalOptions="Center" />
+                     HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"
+                />
+            </Grid>
+
+          
 
             <Button
                 x:Name="BeginButton"
                 Text="Débuter"
                 SemanticProperties.Hint="Débuter le jeu"
                 Command="{Binding BeginGameCommand}"
+                IsVisible="{Binding IsVisibleDebuter}"
                 HorizontalOptions="Center" />
             <Label
                 x:Name="MotLabel"

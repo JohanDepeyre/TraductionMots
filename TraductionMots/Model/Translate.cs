@@ -10,10 +10,10 @@ namespace TraductionMots.Model
     public class Translate
     {
         public Translator OTranslator { get; set; }
-        /// <summary>
+        /// <summary>,
         /// Clé deepl 
         /// </summary>
-        const string authKey = "XXXXXXXXXXXXXXXXXXX"; // Replace with your key
+        const string authKey = "XXXXXXXXXXXXXXX"; // Replace with your key
         public Translate()
         {
 
